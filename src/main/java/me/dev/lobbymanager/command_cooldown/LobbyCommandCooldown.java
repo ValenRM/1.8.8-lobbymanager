@@ -19,4 +19,9 @@ public class LobbyCommandCooldown {
         return 0l;
     }
 
+    public static boolean removeCooldown(Player p) {
+        if (cd.remove(p) == null) return false;
+        return true;
+    }
+
 }
