@@ -14,6 +14,12 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
+        Location loc = (Location) plugin.getConfig().get("spawn.location");
+        if (loc == null) {
+            p.sendMessage(ChatColor.RED + "La ubicacion de spawn predeterminada no fue especificada. Usa " + ChatColor.DARK_RED + "/setspawn" + ChatColor.RED + " para establecer una.");
+            e.setJoinMessage("");
+            return;
+        }
         if (p.hasPlayedBefore()) {
             e.setJoinMessage("");
             p.teleport((Location) plugin.getConfig().get("spawn.location"));
