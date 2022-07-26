@@ -11,6 +11,7 @@ import org.bukkit.plugin.Plugin;
 
 public class PlayerJoinListener implements Listener {
     Plugin plugin = LobbyManager.getPlugin();
+
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent e) {
         Player p = e.getPlayer();
@@ -20,13 +21,12 @@ public class PlayerJoinListener implements Listener {
             e.setJoinMessage("");
             return;
         }
+
+        e.setJoinMessage("");
+        p.teleport((Location) plugin.getConfig().get("spawn.location"));
         if (p.hasPlayedBefore()) {
-            e.setJoinMessage("");
-            p.teleport((Location) plugin.getConfig().get("spawn.location"));
             p.sendMessage(ChatColor.DARK_GREEN + "Bienvenido nuevamente, " + ChatColor.YELLOW + p.getName() + ChatColor.DARK_GREEN + "!");
         } else {
-            e.setJoinMessage("");
-            p.teleport((Location) plugin.getConfig().get("spawn.location"));
             p.getServer().broadcastMessage(ChatColor.YELLOW + p.getName() + ChatColor.DARK_GREEN + " acaba de unirse por primera vez a la comunidad!");
         }
     }
