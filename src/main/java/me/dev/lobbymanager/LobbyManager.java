@@ -4,6 +4,8 @@ import me.dev.lobbymanager.commands.GetSpawnCommand;
 import me.dev.lobbymanager.commands.LobbyCommand;
 import me.dev.lobbymanager.commands.SetSpawnCommand;
 import me.dev.lobbymanager.commands.console.menus.RanksConsoleMenuCommand;
+import me.dev.lobbymanager.commands.ranked.commands.FireworkCommand;
+import me.dev.lobbymanager.commands.ranked.commands.ToggleFlyCommand;
 import me.dev.lobbymanager.listeners.PlayerDamageListener;
 import me.dev.lobbymanager.listeners.PlayerDeathListener;
 import me.dev.lobbymanager.listeners.PlayerJoinListener;
@@ -39,6 +41,11 @@ public final class LobbyManager extends JavaPlugin {
         getCommand("setspawn").setExecutor(new SetSpawnCommand());
         getCommand("getspawn").setExecutor(new GetSpawnCommand());
         getCommand("lobby").setExecutor(new LobbyCommand());
+
+        //RANKED COMMANDS
+
+        getCommand("fly").setExecutor(new ToggleFlyCommand());
+        getCommand("firework").setExecutor(new FireworkCommand());
 
         //GUI COMMANDS TRIGGERED BY HologramController (Console Command Sender)
 
