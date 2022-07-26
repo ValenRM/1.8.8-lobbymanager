@@ -13,6 +13,6 @@ public class PlayerLeaveListener implements Listener {
         String pName = e.getPlayer().getName();
         e.setQuitMessage("");
         LobbyCommandCooldown.removeCooldown(pName);
-        RankGUICooldown.removeCooldown(e.getPlayer());
+        RankGUICooldown.removeCooldown(pName);
     }
 }

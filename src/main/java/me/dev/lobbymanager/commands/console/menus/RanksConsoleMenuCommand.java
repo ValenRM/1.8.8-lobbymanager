@@ -25,11 +25,12 @@ public class RanksConsoleMenuCommand implements CommandExecutor {
                 return true;
             } else {
                 Player target = sender.getServer().getPlayer(args[0]);
+                String targetName = target.getName();
                 if (target != null) {
-                    if (RankGUICooldown.getCooldown(target) != 0l) {
-                        target.sendMessage(ChatColor.RED + "Espera " + ChatColor.DARK_RED + String.format("%d", TimeUnit.MILLISECONDS.toSeconds(RankGUICooldown.getCooldown(target))) + ChatColor.RED + " segundos para volver a interactuar con el menu.");
+                    if (RankGUICooldown.getCooldown(targetName) != 0l) {
+                        target.sendMessage(ChatColor.RED + "Espera " + ChatColor.DARK_RED + String.format("%d", TimeUnit.MILLISECONDS.toSeconds(RankGUICooldown.getCooldown(targetName))) + ChatColor.RED + " segundos para volver a interactuar con el menu.");
                     } else {
-                        RankGUICooldown.setCooldown(target, 3l * 1000l);
+                        RankGUICooldown.setCooldown(targetName, 3l * 1000l);
                         target.openInventory(RankMenu.getRanksInventoy(target));
                     }
                 } else {
