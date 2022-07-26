@@ -7,6 +7,7 @@ import me.dev.lobbymanager.commands.console.menus.RanksConsoleMenuCommand;
 import me.dev.lobbymanager.listeners.PlayerDamageListener;
 import me.dev.lobbymanager.listeners.PlayerDeathListener;
 import me.dev.lobbymanager.listeners.PlayerJoinListener;
+import me.dev.lobbymanager.listeners.PlayerLeaveListener;
 import me.dev.lobbymanager.listeners.menuinteractions.RankGUIInteractionsListener;
 import me.dev.lobbymanager.menus.items.RankMenuItems;
 import me.dev.lobbymanager.menus.items.rankbooks.RankBooksGuiItem;
@@ -30,6 +31,8 @@ public final class LobbyManager extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerDamageListener(), this);
 
         getServer().getPluginManager().registerEvents(new RankGUIInteractionsListener(), this);
+
+        getServer().getPluginManager().registerEvents(new PlayerLeaveListener(), this);
 
         //REGISTER COMMANDS
 
