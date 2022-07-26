@@ -8,3 +8,7 @@ lobby.management.get.spawnlocation #Allows player to get the current spawn locat
 ------------ USERS ------------
 
 lobby.use.execute.lobbycommand #Allows player to use /lobby command.
+
+------------ RANKS ------------
+
+server.rank.vip #VIP Rank
