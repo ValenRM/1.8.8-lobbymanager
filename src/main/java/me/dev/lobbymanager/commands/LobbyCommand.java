@@ -22,8 +22,9 @@ public class LobbyCommand implements CommandExecutor {
         if (sender instanceof Player) {
             Player p = (Player) sender;
             if (p.hasPermission("lobby.use.execute.lobbycommand")) {
-                if (LobbyCommandCooldown.getCooldown(p) != 0l) {
-                    p.sendMessage(ChatColor.RED + "Espera " + ChatColor.DARK_RED + String.format("%d", TimeUnit.MILLISECONDS.toSeconds(LobbyCommandCooldown.getCooldown(p))) + ChatColor.RED + " segundos para usar nuevamente este comando.");
+                String pName = p.getName();
+                if (LobbyCommandCooldown.getCooldown(pName) != 0l) {
+                    p.sendMessage(ChatColor.RED + "Espera " + ChatColor.DARK_RED + String.format("%d", TimeUnit.MILLISECONDS.toSeconds(LobbyCommandCooldown.getCooldown(pName))) + ChatColor.RED + " segundos para usar nuevamente este comando.");
                 } else {
                     Location loc = (Location) plugin.getConfig().get("spawn.location");
                     if (loc == null) {
@@ -33,7 +34,7 @@ public class LobbyCommand implements CommandExecutor {
                     p.teleport(loc);
 
                     p.sendMessage(ChatColor.GREEN + "Has sido teletransportado al Lobby.");
-                    LobbyCommandCooldown.setCooldown(p, 3 * 1000l);
+                    LobbyCommandCooldown.setCooldown(pName, 3 * 1000l);
                 }
             } else {
                 NoPermissionsHandler.NoPermissions(p);

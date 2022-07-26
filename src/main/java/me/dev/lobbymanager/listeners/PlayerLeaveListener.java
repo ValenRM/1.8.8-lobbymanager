@@ -10,9 +10,9 @@ import org.bukkit.event.player.PlayerQuitEvent;
 public class PlayerLeaveListener implements Listener {
     @EventHandler
     public void onPlayerLeave(PlayerQuitEvent e) {
-        Player p = e.getPlayer();
+        String pName = e.getPlayer().getName();
         e.setQuitMessage("");
-        LobbyCommandCooldown.removeCooldown(p);
-        RankGUICooldown.removeCooldown(p);
+        LobbyCommandCooldown.removeCooldown(pName);
+        RankGUICooldown.removeCooldown(e.getPlayer());
     }
 }
