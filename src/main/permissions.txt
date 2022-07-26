@@ -1,0 +1,10 @@
+PERMISSIONS
+
+------------ ADMIN ------------
+
+lobby.management.set.spawnlocation #Allows player to set the spawn location of every player.
+lobby.management.get.spawnlocation #Allows player to get the current spawn location set for every player.
+
+------------ USERS ------------
+
+lobby.use.execute.lobbycommand #Allows player to use /lobby command.
