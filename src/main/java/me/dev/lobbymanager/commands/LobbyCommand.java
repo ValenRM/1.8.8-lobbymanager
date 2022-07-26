@@ -25,7 +25,12 @@ public class LobbyCommand implements CommandExecutor {
                 if (LobbyCommandCooldown.getCooldown(p) != 0l) {
                     p.sendMessage(ChatColor.RED + "Espera " + ChatColor.DARK_RED + String.format("%d", TimeUnit.MILLISECONDS.toSeconds(LobbyCommandCooldown.getCooldown(p))) + ChatColor.RED + " segundos para usar nuevamente este comando.");
                 } else {
-                    p.teleport((Location) plugin.getConfig().get("spawn.location"));
+                    Location loc = (Location) plugin.getConfig().get("spawn.location");
+                    if (loc == null) {
+                        p.sendMessage(ChatColor.RED + "La ubicacion de spawn predeterminada no fue especificada. Usa " + ChatColor.DARK_RED + "/setspawn" + ChatColor.RED + " para establecer una.");
+                        return true;
+                    }
+                    p.teleport(loc);
 
                     p.sendMessage(ChatColor.GREEN + "Has sido teletransportado al Lobby.");
                     LobbyCommandCooldown.setCooldown(p, 3 * 1000l);
