@@ -1,0 +1,18 @@
+name: 1.8.8-LobbyManager
+version: '${project.version}'
+main: me.dev.lobbymanager.LobbyManager
+authors: [ Valen ]
+description: A plugin coded by Valen#1741 that manages the main Lobby of the server.
+commands:
+  setspawn:
+    description: Sets the spawn location of every player.
+    usage: /<command>
+  getspawn:
+    description: Gets the current spawn location of all players.
+    usage: /<commmand>
+  lobby:
+    description: Teletransporta al jugador al Lobby principal.
+    usage: /<command>
+  launchrankgui:
+    description: Command triggered by HologramController console
+    usage: /<command>
