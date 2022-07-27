@@ -1,8 +1,6 @@
 package me.dev.lobbymanager;
 
-import me.dev.lobbymanager.commands.GetSpawnCommand;
-import me.dev.lobbymanager.commands.LobbyCommand;
-import me.dev.lobbymanager.commands.SetSpawnCommand;
+import me.dev.lobbymanager.commands.*;
 import me.dev.lobbymanager.commands.console.menus.RanksConsoleMenuCommand;
 import me.dev.lobbymanager.commands.ranked.commands.FireworkCommand;
 import me.dev.lobbymanager.commands.ranked.commands.ToggleFlyCommand;
@@ -10,7 +8,9 @@ import me.dev.lobbymanager.listeners.PlayerDamageListener;
 import me.dev.lobbymanager.listeners.PlayerDeathListener;
 import me.dev.lobbymanager.listeners.PlayerJoinListener;
 import me.dev.lobbymanager.listeners.PlayerLeaveListener;
+import me.dev.lobbymanager.listeners.menuinteractions.InteractionListener;
 import me.dev.lobbymanager.listeners.menuinteractions.RankGUIInteractionsListener;
+import me.dev.lobbymanager.menus.fireworks.FireworkMenuItems;
 import me.dev.lobbymanager.menus.items.RankMenuItems;
 import me.dev.lobbymanager.menus.items.rankbooks.RankBooksGuiItem;
 import me.dev.lobbymanager.rules.RuleLoader;
@@ -33,10 +33,8 @@ public final class LobbyManager extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerDeathListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerDamageListener(), this);
 
-        getServer().getPluginManager().registerEvents(new RankGUIInteractionsListener(), this);
-
         getServer().getPluginManager().registerEvents(new PlayerLeaveListener(), this);
-
+        getServer().getPluginManager().registerEvents(new InteractionListener(), this);
         //REGISTER COMMANDS
 
         getCommand("setspawn").setExecutor(new SetSpawnCommand());
@@ -64,6 +62,8 @@ public final class LobbyManager extends JavaPlugin {
         RankBooksGuiItem.setMVPRankGUIContent();
         RankBooksGuiItem.setMVPpRankGUIContent();
         RankBooksGuiItem.setMVPppRankGUIContent();
+
+        FireworkMenuItems.loadFireworkGUIMetas();
 
 
         System.out.println("[1.8.8 - Lobby Manager] Lobby Manager has successfully initialized.");

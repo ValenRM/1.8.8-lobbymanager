@@ -1,6 +1,7 @@
 package me.dev.lobbymanager.commands.ranked.commands;
 
 import me.dev.lobbymanager.LobbyManager;
+import me.dev.lobbymanager.menus.fireworks.FireworkCustomizationGUIMenu;
 import net.minecraft.server.v1_8_R3.EntityTypes;
 import org.bukkit.*;
 import org.bukkit.command.Command;
@@ -24,14 +25,16 @@ public class FireworkCommand implements CommandExecutor {
         if (sender instanceof Player) {
             Player p = (Player) sender;
             if (p.hasPermission("server.rank.vip")) {
-                    Firework f = (Firework) p.getWorld().spawnEntity(p.getLocation(), EntityType.FIREWORK);
+                p.openInventory(FireworkCustomizationGUIMenu.getFireworksInventory(p));
+
+                    /*Firework f = (Firework) p.getWorld().spawnEntity(p.getLocation(), EntityType.FIREWORK);
                     FireworkMeta fm = f.getFireworkMeta();
                     List<Color> c = new ArrayList<Color>();
-                    c.add(Color.GREEN);
+                    c.add(Color.RED);
                     FireworkEffect effect = FireworkEffect.builder().flicker(true).withColor(c).withFade(c).with(FireworkEffect.Type.CREEPER).trail(true).build();
                     fm.addEffect(effect);
                     fm.setPower(1);
-                    f.setFireworkMeta(fm);
+                    f.setFireworkMeta(fm);*/
             }
         }
         return true;
