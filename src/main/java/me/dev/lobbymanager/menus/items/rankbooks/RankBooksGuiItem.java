@@ -54,7 +54,7 @@ public class RankBooksGuiItem {
         s7.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColor.GRAY + "Desbloquea apertura de cajas " + ChatColor.LIGHT_PURPLE + "☆4" + ChatColor.GRAY + "!").create()));
         TextComponent s8 = new TextComponent(ChatColor.RED + "" + ChatColor.BOLD + " MAS INFORMACION\n\n");
 
-        TextComponent s9 = new TextComponent(ChatColor.GOLD + "" + ChatColor.BOLD + "   RESHARPENED\n       STORE");
+        TextComponent s9 = new TextComponent(ChatColor.GOLD + "" + ChatColor.BOLD + "   RESHARPENED\n" + ChatColor.GOLD + "" + ChatColor.BOLD + "       STORE");
         s9.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.spigotmc.org/wiki/interactive-books/"));
         s9.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColor.GRAY + "Abre la tienda del servidor en el navegador").create()));
 
@@ -101,7 +101,7 @@ public class RankBooksGuiItem {
 
         TextComponent s9 = new TextComponent(ChatColor.RED + "" + ChatColor.BOLD + " MAS INFORMACION\n\n");
 
-        TextComponent s10 = new TextComponent(ChatColor.GOLD + "" + ChatColor.BOLD + "   RESHARPENED\n       STORE");
+        TextComponent s10 = new TextComponent(ChatColor.GOLD + "" + ChatColor.BOLD + "   RESHARPENED\n" + ChatColor.GOLD + "" + ChatColor.BOLD + "       STORE");
         s10.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.spigotmc.org/wiki/interactive-books/"));
         s10.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColor.GRAY + "Abre la tienda del servidor en el navegador").create()));
 
@@ -153,7 +153,7 @@ public class RankBooksGuiItem {
 
         TextComponent s11 = new TextComponent(ChatColor.RED + "" + ChatColor.BOLD + " MAS INFORMACION\n\n");
 
-        TextComponent s12 = new TextComponent(ChatColor.GOLD + "" + ChatColor.BOLD + "   RESHARPENED\n       STORE");
+        TextComponent s12 = new TextComponent(ChatColor.GOLD + "" + ChatColor.BOLD + "   RESHARPENED\n" + ChatColor.GOLD + "" + ChatColor.BOLD + "       STORE");
         s12.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.spigotmc.org/wiki/interactive-books/"));
         s12.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColor.GRAY + "Abre la tienda del servidor en el navegador").create()));
 
@@ -209,7 +209,7 @@ public class RankBooksGuiItem {
 
         TextComponent s13 = new TextComponent(ChatColor.RED + "" + ChatColor.BOLD + " MAS INFORMACION\n\n");
 
-        TextComponent s14 = new TextComponent(ChatColor.GOLD + "" + ChatColor.BOLD + "   RESHARPENED\n       STORE");
+        TextComponent s14 = new TextComponent(ChatColor.GOLD + "" + ChatColor.BOLD + "   RESHARPENED\n" + ChatColor.GOLD + "" + ChatColor.BOLD + "       STORE");
         s14.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.spigotmc.org/wiki/interactive-books/"));
         s14.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColor.GRAY + "Abre la tienda del servidor en el navegador").create()));
 
@@ -273,7 +273,7 @@ public class RankBooksGuiItem {
 
         TextComponent s17 = new TextComponent(ChatColor.RED + "" + ChatColor.BOLD + " MAS INFORMACION\n\n");
 
-        TextComponent s18 = new TextComponent(ChatColor.GOLD + "" + ChatColor.BOLD + "   RESHARPENED\n       STORE");
+        TextComponent s18 = new TextComponent(ChatColor.GOLD + "" + ChatColor.BOLD + "   RESHARPENED\n" + ChatColor.GOLD + "" + ChatColor.BOLD + "       STORE");
         s18.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.spigotmc.org/wiki/interactive-books/"));
         s18.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder(ChatColor.GRAY + "Abre la tienda del servidor en el navegador").create()));
 
