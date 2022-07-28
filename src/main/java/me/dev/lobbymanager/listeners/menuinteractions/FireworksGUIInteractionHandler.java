@@ -165,6 +165,7 @@ public class FireworksGUIInteractionHandler {
         fMeta.addEffect(fireworkEffect);
         f.setFireworkMeta(fMeta);
         FireworkPlayerSettings.setFireworkPresets(p.getName(), f);
+        p.closeInventory();
         //f.setPassenger(p);
     }
     private static ItemStack setSelected(ItemStack item) {

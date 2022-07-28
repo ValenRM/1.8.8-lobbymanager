@@ -1,5 +1,6 @@
 package me.dev.lobbymanager.menus;
 
+import me.dev.lobbymanager.menus.fireworks.FireworkMenuItems;
 import me.dev.lobbymanager.menus.items.RankMenuItems;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -17,6 +18,7 @@ public class RankMenu {
         Inventory inventory = Bukkit.createInventory(p, 54, ChatColor.DARK_GRAY + "Rangos");
         try {
             inventory.setItem(0, RankMenuItems.getRankInventoryItems("rankSelector"));
+            inventory.setItem(1, FireworkMenuItems.getItem("fireworkSelector"));
             inventory.setItem(9, RankMenuItems.getRankInventoryItems("selectedSeparationPane"));
             inventory.setItem(10, RankMenuItems.getRankInventoryItems("offSeparationPane"));
             inventory.setItem(11, RankMenuItems.getRankInventoryItems("offSeparationPane"));

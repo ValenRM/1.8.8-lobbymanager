@@ -1,6 +1,7 @@
 package me.dev.lobbymanager.listeners.menuinteractions;
 
 import me.dev.lobbymanager.LobbyManager;
+import me.dev.lobbymanager.menus.fireworks.FireworkCustomizationGUIMenu;
 import me.dev.lobbymanager.menus.items.rankbooks.OpenRankBookItem;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -22,6 +23,14 @@ public class RankGUIInteractionsListener {
             if (e.getClickedInventory().getItem(clickedSlot) == null) return;
             if (!e.getClickedInventory().getItem(clickedSlot).getItemMeta().hasDisplayName()) return;
             switch (ChatColor.stripColor(e.getClickedInventory().getItem(clickedSlot).getItemMeta().getDisplayName()).toLowerCase()) {
+                case "customizacion de cohete":
+                    if (p.hasPermission("server.rank.vip")) {
+                        p.openInventory(FireworkCustomizationGUIMenu.getFireworksInventory(p));
+                    } else {
+                        p.sendMessage(ChatColor.RED + "Debes ser " + ChatColor.GREEN + "VIP" + ChatColor.RED + " o superior para poder entrar a este menu.");
+                        p.closeInventory();
+                    }
+                    break;
                 case "vip":
                     p.playSound(pLoc, Sound.ENDERMAN_TELEPORT, 10.0f, 30);
                     break;
