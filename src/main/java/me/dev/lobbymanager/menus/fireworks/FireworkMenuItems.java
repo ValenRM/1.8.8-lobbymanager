@@ -29,6 +29,9 @@ public class FireworkMenuItems {
     private static ItemStack greenColor = new ItemStack(Material.INK_SACK);
     private static ItemStack whiteColor = new ItemStack(Material.INK_SACK);
     private static ItemStack trailSelector = new ItemStack(Material.REDSTONE_BLOCK);
+    private static ItemStack saveItem = new ItemStack(Material.GREEN_RECORD);
+    private static ItemStack closeItem = new ItemStack(Material.BARRIER);
+
 
     public static void loadFireworkGUIMetas () {
         ItemMeta fireworkSelectorMeta = fireworkSelector.getItemMeta();
@@ -145,6 +148,16 @@ public class FireworkMenuItems {
         )));
         trailSelector.setItemMeta(trailSelectorMeta);
 
+        ItemMeta saveItemMeta = saveItem.getItemMeta();
+        saveItemMeta.setDisplayName(ChatColor.GREEN + "Guardar");
+        saveItemMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+        saveItem.setItemMeta(saveItemMeta);
+
+        ItemMeta closeItemMeta = closeItem.getItemMeta();
+        closeItemMeta.setDisplayName(ChatColor.RED + "Salir");
+        closeItem.setItemMeta(closeItemMeta);
+
+
 
 
 
@@ -158,13 +171,15 @@ public class FireworkMenuItems {
         items.put("fireworkPowerIconIII", fireworkPowerIconIII);
         items.put("fireworkPowerIconIIEnabled", fireworkPowerIconIIEnabled);
         items.put("fireworkPowerIconIIIEnabled", fireworkPowerIconIIIEnabled);
-
         items.put("purpleColor", purpleColor);
         items.put("redColor", redColor);
         items.put("blueColor", blueColor);
         items.put("greenColor", greenColor);
         items.put("whiteColor", whiteColor);
         items.put("trailSelector", trailSelector);
+        items.put("saveItem", saveItem);
+        items.put("closeItem", closeItem);
+
 
 
 

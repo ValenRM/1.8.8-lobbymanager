@@ -2,12 +2,16 @@ package me.dev.lobbymanager.listeners.menuinteractions;
 
 import me.dev.lobbymanager.LobbyManager;
 import me.dev.lobbymanager.menus.fireworks.FireworkMenuItems;
+import me.dev.lobbymanager.playersettings.FireworkPlayerSettings;
 import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 
@@ -46,7 +50,6 @@ public class FireworksGUIInteractionHandler {
                 if (e.getClickedInventory().getItem(clickedSlot).getDurability() == 7) {
                     e.getClickedInventory().setItem(31, FireworkMenuItems.getItem("fireworkPowerIconIIEnabled"));
                     e.getClickedInventory().setItem(32, FireworkMenuItems.getItem("fireworkPowerIconIIIEnabled"));
-
                 }
                 break;
             case "violeta":
@@ -113,9 +116,57 @@ public class FireworksGUIInteractionHandler {
                     e.getClickedInventory().setItem(49, FireworkMenuItems.getItem("trailSelector"));
                 }
                 break;
+            case "salir":
+                    p.closeInventory();
+                break;
+            case "guardar":
+                    saveSettings(e, p);
+                break;
         }
     }
 
+    private static void saveSettings(InventoryClickEvent e, Player p) {
+        Location pLoc = p.getLocation();
+        int fireworkPower = 1;
+        boolean fireworkTrail = false;
+        ArrayList<Color> fireworkColors = new ArrayList<Color>();
+
+        for (int i = 38; i <= 42; i++) {
+            if (e.getClickedInventory().getItem(i).getEnchantments().containsKey(Enchantment.DURABILITY)) {
+                String itemName = ChatColor.stripColor(e.getClickedInventory().getItem(i).getItemMeta().getDisplayName());
+                if (itemName.equalsIgnoreCase("violeta")) {
+                    fireworkColors.add(Color.PURPLE);
+                } else if (itemName.equalsIgnoreCase("rojo")) {
+                    fireworkColors.add(Color.RED);
+                } else if (itemName.equalsIgnoreCase("azul")) {
+                    fireworkColors.add(Color.BLUE);
+                } else if (itemName.equalsIgnoreCase("verde")) {
+                    fireworkColors.add(Color.GREEN);
+                } else if (itemName.equalsIgnoreCase("blanco")) {
+                    fireworkColors.add(Color.WHITE);
+                }
+            }
+        }
+        for (int i = 30; i <= 32; i++) {
+            if (e.getClickedInventory().getItem(i).getDurability() == 5) {
+                if (i == 31) {
+                    fireworkPower = 2;
+                } else if (i == 32) {
+                    fireworkPower = 3;
+                }
+            }
+        }
+        if (e.getClickedInventory().getItem(49).getData().getItemType() == Material.EMERALD_BLOCK) fireworkTrail = true;
+        if (fireworkColors.size() < 1) fireworkColors.add(Color.WHITE);
+        Firework f = (Firework) p.getWorld().spawnEntity(pLoc, EntityType.FIREWORK);
+        FireworkMeta fMeta = f.getFireworkMeta();
+        fMeta.setPower(fireworkPower);
+        FireworkEffect fireworkEffect = FireworkEffect.builder().flicker(fireworkTrail).withColor(fireworkColors).withFade(fireworkColors).with(FireworkEffect.Type.CREEPER).trail(fireworkTrail).build();
+        fMeta.addEffect(fireworkEffect);
+        f.setFireworkMeta(fMeta);
+        FireworkPlayerSettings.setFireworkPresets(p.getName(), f);
+        //f.setPassenger(p);
+    }
     private static ItemStack setSelected(ItemStack item) {
         ItemMeta itemMeta = item.getItemMeta();
         itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);

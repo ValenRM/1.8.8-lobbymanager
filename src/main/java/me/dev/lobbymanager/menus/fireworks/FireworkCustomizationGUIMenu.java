@@ -33,6 +33,8 @@ public class FireworkCustomizationGUIMenu {
             FireworksInventory.setItem(41, FireworkMenuItems.getItem("greenColor"));
             FireworksInventory.setItem(42, FireworkMenuItems.getItem("whiteColor"));
             FireworksInventory.setItem(49, FireworkMenuItems.getItem("trailSelector"));
+            FireworksInventory.setItem(45, FireworkMenuItems.getItem("closeItem"));
+            FireworksInventory.setItem(53, FireworkMenuItems.getItem("saveItem"));
 
 
 
