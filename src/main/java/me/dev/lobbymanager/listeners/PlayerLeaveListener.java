@@ -1,5 +1,6 @@
 package me.dev.lobbymanager.listeners;
 
+import me.dev.lobbymanager.command_cooldown.FireworkCommandCooldown;
 import me.dev.lobbymanager.command_cooldown.LobbyCommandCooldown;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,5 +12,6 @@ public class PlayerLeaveListener implements Listener {
         String pName = e.getPlayer().getName();
         e.setQuitMessage("");
         LobbyCommandCooldown.removeCooldown(pName);
+        FireworkCommandCooldown.removeCooldown(pName);
     }
 }
