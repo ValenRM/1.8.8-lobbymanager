@@ -28,6 +28,7 @@ public class FireworkCommand implements CommandExecutor {
             if (p.hasPermission("server.rank.vip")) {
                 if (args.length < 1) {
                     FireworkMeta fMeta = FireworkPlayerSettings.getFireworks(p.getName());
+                    boolean mountPlayer = FireworkPlayerSettings.getMountFirework(p.getName());
                     Firework f = (Firework) p.getWorld().spawnEntity(p.getLocation(), EntityType.FIREWORK);
                     if (fMeta == null) {
                         fMeta = f.getFireworkMeta();
@@ -36,6 +37,7 @@ public class FireworkCommand implements CommandExecutor {
                         f.setFireworkMeta(fMeta);
                     } else {
                         f.setFireworkMeta(fMeta);
+                        if (mountPlayer) f.setPassenger(p);
                     }
 
                 } else if (args[0].equalsIgnoreCase("ajustes")) {

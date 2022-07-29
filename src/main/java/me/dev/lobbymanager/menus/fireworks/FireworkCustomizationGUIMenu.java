@@ -28,6 +28,7 @@ public class FireworkCustomizationGUIMenu {
             FireworksInventory.setItem(36, FireworkMenuItems.getItem("bigBallBurst"));
             FireworksInventory.setItem(26, FireworkMenuItems.getItem("starBurst"));
             FireworksInventory.setItem(35, FireworkMenuItems.getItem("upwardsBurst"));
+            FireworksInventory.setItem(44, FireworkMenuItems.getItem("rideFirework"));
             FireworksInventory.setItem(29, FireworkMenuItems.getItem("fireworkPowerIcon"));
             FireworksInventory.setItem(30, FireworkMenuItems.getItem("fireworkPowerIconI"));
             FireworksInventory.setItem(31, FireworkMenuItems.getItem("fireworkPowerIconII"));

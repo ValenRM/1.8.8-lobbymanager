@@ -202,6 +202,7 @@ public class FireworkMenuItems {
         items.put("bigBallBurst", CreateCustomHead.GetSkull(ChatColor.GREEN + "Explosion Grande", "909b07967457d49da6772108e866e1229d0c948d01ec645a9f610505dd90aca4"));
         items.put("starBurst", CreateCustomHead.GetSkull(ChatColor.GREEN + "Explosion de Estrella", "34fec5cdc2e22401a4b5ba376ffe647279ed3f94fd75f8056d986f33c931ac55"));
         items.put("upwardsBurst", CreateCustomHead.GetSkull(ChatColor.GREEN + "Explosion Especial", "315bbda12e1b832a6a6af85d8439152d9157ce104e6a7f7b36aeaccc863544"));
+        items.put("rideFirework", CreateCustomHead.GetSkull(ChatColor.GREEN + "Montar Cohete", "760a08da8d3e73c5addcc103895656ac404ff42f2d5b5b746ccde607ce90443c"));
 
 
 

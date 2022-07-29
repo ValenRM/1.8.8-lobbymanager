@@ -125,6 +125,10 @@ public class FireworksGUIInteractionHandler {
                         e.getClickedInventory().setItem(18, FireworkMenuItems.getItem("creeperBurst"));
                     } else {
                         e.getClickedInventory().setItem(18, setSelectedSkull(clickedItem));
+                        e.getClickedInventory().setItem(27, FireworkMenuItems.getItem("smallBallBurst"));
+                        e.getClickedInventory().setItem(36, FireworkMenuItems.getItem("bigBallBurst"));
+                        e.getClickedInventory().setItem(26, FireworkMenuItems.getItem("starBurst"));
+                        e.getClickedInventory().setItem(35, FireworkMenuItems.getItem("upwardsBurst"));
                     }
                 break;
             case "explosion chica":
@@ -134,6 +138,10 @@ public class FireworksGUIInteractionHandler {
                     e.getClickedInventory().setItem(27, FireworkMenuItems.getItem("smallBallBurst"));
                 } else {
                     e.getClickedInventory().setItem(27, setSelectedSkull(clickedItem));
+                    e.getClickedInventory().setItem(18, FireworkMenuItems.getItem("creeperBurst"));
+                    e.getClickedInventory().setItem(36, FireworkMenuItems.getItem("bigBallBurst"));
+                    e.getClickedInventory().setItem(26, FireworkMenuItems.getItem("starBurst"));
+                    e.getClickedInventory().setItem(35, FireworkMenuItems.getItem("upwardsBurst"));
                 }
                 break;
             case "explosion grande":
@@ -143,6 +151,10 @@ public class FireworksGUIInteractionHandler {
                     e.getClickedInventory().setItem(36, FireworkMenuItems.getItem("bigBallBurst"));
                 } else {
                     e.getClickedInventory().setItem(36, setSelectedSkull(clickedItem));
+                    e.getClickedInventory().setItem(18, FireworkMenuItems.getItem("creeperBurst"));
+                    e.getClickedInventory().setItem(27, FireworkMenuItems.getItem("smallBallBurst"));
+                    e.getClickedInventory().setItem(26, FireworkMenuItems.getItem("starBurst"));
+                    e.getClickedInventory().setItem(35, FireworkMenuItems.getItem("upwardsBurst"));
                 }
                 break;
             case "explosion de estrella":
@@ -152,6 +164,10 @@ public class FireworksGUIInteractionHandler {
                     e.getClickedInventory().setItem(26, FireworkMenuItems.getItem("starBurst"));
                 } else {
                     e.getClickedInventory().setItem(26, setSelectedSkull(clickedItem));
+                    e.getClickedInventory().setItem(18, FireworkMenuItems.getItem("creeperBurst"));
+                    e.getClickedInventory().setItem(27, FireworkMenuItems.getItem("smallBallBurst"));
+                    e.getClickedInventory().setItem(36, FireworkMenuItems.getItem("bigBallBurst"));
+                    e.getClickedInventory().setItem(35, FireworkMenuItems.getItem("upwardsBurst"));
                 }
                 break;
             case "explosion especial":
@@ -161,6 +177,19 @@ public class FireworksGUIInteractionHandler {
                     e.getClickedInventory().setItem(35, FireworkMenuItems.getItem("upwardsBurst"));
                 } else {
                     e.getClickedInventory().setItem(35, setSelectedSkull(clickedItem));
+                    e.getClickedInventory().setItem(18, FireworkMenuItems.getItem("creeperBurst"));
+                    e.getClickedInventory().setItem(27, FireworkMenuItems.getItem("smallBallBurst"));
+                    e.getClickedInventory().setItem(36, FireworkMenuItems.getItem("bigBallBurst"));
+                    e.getClickedInventory().setItem(26, FireworkMenuItems.getItem("starBurst"));
+                }
+                break;
+            case "montar cohete":
+                p.playSound(p.getLocation(), Sound.CLICK, 10f, 20f);
+                clickedItem = e.getClickedInventory().getItem(clickedSlot);
+                if (clickedItem.getEnchantments().containsKey(Enchantment.DURABILITY)) {
+                    e.getClickedInventory().setItem(44, FireworkMenuItems.getItem("rideFirework"));
+                } else {
+                    e.getClickedInventory().setItem(44, setSelectedSkull(clickedItem));
                 }
                 break;
             case "salir":
@@ -175,6 +204,7 @@ public class FireworksGUIInteractionHandler {
         Location pLoc = p.getLocation();
         int fireworkPower = 1;
         boolean fireworkTrail = false;
+        FireworkEffect.Type effectType = FireworkEffect.Type.BALL_LARGE;
         ArrayList<Color> fireworkColors = new ArrayList<Color>();
 
         for (int i = 38; i <= 42; i++) {
@@ -202,17 +232,45 @@ public class FireworksGUIInteractionHandler {
                 }
             }
         }
+
+        List<Integer> explosionTypesIndexes = new ArrayList<>(Arrays.asList(18, 27, 36, 26, 35));
+
+        for (int itemIndex : explosionTypesIndexes) {
+            ItemStack item = e.getClickedInventory().getItem(itemIndex);
+            if (item.getEnchantments().containsKey(Enchantment.DURABILITY)) {
+                String itemName = ChatColor.stripColor(item.getItemMeta().getDisplayName());
+                if (itemName.equalsIgnoreCase("explosion de creeper")) {
+                    effectType = FireworkEffect.Type.CREEPER;
+                } else if (itemName.equalsIgnoreCase("explosion chica")) {
+                    effectType = FireworkEffect.Type.BALL;
+                } else if (itemName.equalsIgnoreCase("explosion grande")) {
+                    effectType = FireworkEffect.Type.BALL_LARGE;
+                } else if (itemName.equalsIgnoreCase("explosion de estrella")) {
+                    effectType = FireworkEffect.Type.STAR;
+                } else if (itemName.equalsIgnoreCase("explosion especial")) {
+                    effectType = FireworkEffect.Type.BURST;
+                }
+            }
+        }
+
+
         if (e.getClickedInventory().getItem(49).getData().getItemType() == Material.EMERALD_BLOCK) fireworkTrail = true;
         if (fireworkColors.size() < 1) fireworkColors.add(Color.WHITE);
         Firework f = (Firework) p.getWorld().spawnEntity(pLoc, EntityType.FIREWORK);
         FireworkMeta fMeta = f.getFireworkMeta();
         fMeta.setPower(fireworkPower);
-        FireworkEffect fireworkEffect = FireworkEffect.builder().flicker(fireworkTrail).withColor(fireworkColors).withFade(fireworkColors).with(FireworkEffect.Type.CREEPER).trail(fireworkTrail).build();
+        FireworkEffect fireworkEffect = FireworkEffect.builder().flicker(fireworkTrail).withColor(fireworkColors).withFade(fireworkColors).with(effectType).trail(fireworkTrail).build();
         fMeta.addEffect(fireworkEffect);
         f.setFireworkMeta(fMeta);
         FireworkPlayerSettings.setFireworkPresets(p.getName(), f);
+        if (e.getClickedInventory().getItem(44).getEnchantments().containsKey(Enchantment.DURABILITY)) {
+            FireworkPlayerSettings.setMountFirework(p.getName(), true);
+            f.setPassenger(p);
+        } else {
+            FireworkPlayerSettings.setMountFirework(p.getName(), false);
+        }
+
         p.closeInventory();
-        //f.setPassenger(p);
     }
     private static ItemStack setSelected(ItemStack item) {
         ItemMeta itemMeta = item.getItemMeta();
@@ -231,7 +289,7 @@ public class FireworksGUIInteractionHandler {
         skullMeta.addEnchant(Enchantment.DURABILITY, 1, false);
         List<String> lore = new ArrayList<String>(Arrays.asList(
                 "",
-                ChatColor.GREEN + "" + ChatColor.ITALIC + "Seleccionado"
+                ChatColor.BLUE + "" + ChatColor.ITALIC + "Seleccionado"
         ));
         skullMeta.setLore(lore);
         item.setItemMeta(skullMeta);
