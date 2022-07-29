@@ -16,11 +16,8 @@ commands:
   launchrankgui:
     description: Command triggered by HologramController console
     usage: /<command>
-  fly:
-    description: Activa/Desactiva el modo de vuelo en lobbys
-    usage: /<command>
   firework:
     description: Spawnea un cohete en la ubicacion del jugador (solo en lobbys)
-    usage: /<command>
+    usage: /<command> <ajustes>
     aliases:
       - fw

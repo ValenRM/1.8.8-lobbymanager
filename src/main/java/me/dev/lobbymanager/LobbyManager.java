@@ -43,7 +43,6 @@ public final class LobbyManager extends JavaPlugin {
 
         //RANKED COMMANDS
 
-        getCommand("fly").setExecutor(new ToggleFlyCommand());
         getCommand("firework").setExecutor(new FireworkCommand());
 
         //GUI COMMANDS TRIGGERED BY HologramController (Console Command Sender)
