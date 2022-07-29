@@ -13,9 +13,11 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 import org.bukkit.plugin.Plugin;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class FireworksGUIInteractionHandler {
@@ -116,15 +118,59 @@ public class FireworksGUIInteractionHandler {
                     e.getClickedInventory().setItem(49, FireworkMenuItems.getItem("trailSelector"));
                 }
                 break;
+            case "explosion de creeper":
+                p.playSound(p.getLocation(), Sound.CLICK, 10f, 20f);
+                clickedItem = e.getClickedInventory().getItem(clickedSlot);
+                    if (clickedItem.getEnchantments().containsKey(Enchantment.DURABILITY)) {
+                        e.getClickedInventory().setItem(18, FireworkMenuItems.getItem("creeperBurst"));
+                    } else {
+                        e.getClickedInventory().setItem(18, setSelectedSkull(clickedItem));
+                    }
+                break;
+            case "explosion chica":
+                p.playSound(p.getLocation(), Sound.CLICK, 10f, 20f);
+                clickedItem = e.getClickedInventory().getItem(clickedSlot);
+                if (clickedItem.getEnchantments().containsKey(Enchantment.DURABILITY)) {
+                    e.getClickedInventory().setItem(27, FireworkMenuItems.getItem("smallBallBurst"));
+                } else {
+                    e.getClickedInventory().setItem(27, setSelectedSkull(clickedItem));
+                }
+                break;
+            case "explosion grande":
+                p.playSound(p.getLocation(), Sound.CLICK, 10f, 20f);
+                clickedItem = e.getClickedInventory().getItem(clickedSlot);
+                if (clickedItem.getEnchantments().containsKey(Enchantment.DURABILITY)) {
+                    e.getClickedInventory().setItem(36, FireworkMenuItems.getItem("bigBallBurst"));
+                } else {
+                    e.getClickedInventory().setItem(36, setSelectedSkull(clickedItem));
+                }
+                break;
+            case "explosion de estrella":
+                p.playSound(p.getLocation(), Sound.CLICK, 10f, 20f);
+                clickedItem = e.getClickedInventory().getItem(clickedSlot);
+                if (clickedItem.getEnchantments().containsKey(Enchantment.DURABILITY)) {
+                    e.getClickedInventory().setItem(26, FireworkMenuItems.getItem("starBurst"));
+                } else {
+                    e.getClickedInventory().setItem(26, setSelectedSkull(clickedItem));
+                }
+                break;
+            case "explosion especial":
+                p.playSound(p.getLocation(), Sound.CLICK, 10f, 20f);
+                clickedItem = e.getClickedInventory().getItem(clickedSlot);
+                if (clickedItem.getEnchantments().containsKey(Enchantment.DURABILITY)) {
+                    e.getClickedInventory().setItem(35, FireworkMenuItems.getItem("upwardsBurst"));
+                } else {
+                    e.getClickedInventory().setItem(35, setSelectedSkull(clickedItem));
+                }
+                break;
             case "salir":
                     p.closeInventory();
                 break;
             case "guardar":
                     saveSettings(e, p);
                 break;
+            }
         }
-    }
-
     private static void saveSettings(InventoryClickEvent e, Player p) {
         Location pLoc = p.getLocation();
         int fireworkPower = 1;
@@ -176,6 +222,20 @@ public class FireworksGUIInteractionHandler {
         lore.add(ChatColor.GREEN + "" + ChatColor.ITALIC + "Seleccionado");
         itemMeta.setLore(lore);
         item.setItemMeta(itemMeta);
+        return item;
+    }
+
+    private static ItemStack setSelectedSkull (ItemStack item) {
+        SkullMeta skullMeta = (SkullMeta) item.getItemMeta();
+        skullMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        skullMeta.addEnchant(Enchantment.DURABILITY, 1, false);
+        List<String> lore = new ArrayList<String>(Arrays.asList(
+                "",
+                ChatColor.GREEN + "" + ChatColor.ITALIC + "Seleccionado"
+        ));
+        skullMeta.setLore(lore);
+        item.setItemMeta(skullMeta);
+
         return item;
     }
 }

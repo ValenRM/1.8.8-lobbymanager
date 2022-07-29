@@ -1,5 +1,6 @@
 package me.dev.lobbymanager.menus.fireworks;
 
+import me.dev.lobbymanager.customheads.CreateCustomHead;
 import net.citizensnpcs.npc.ai.speech.Chat;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -8,6 +9,7 @@ import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +33,13 @@ public class FireworkMenuItems {
     private static ItemStack trailSelector = new ItemStack(Material.REDSTONE_BLOCK);
     private static ItemStack saveItem = new ItemStack(Material.GREEN_RECORD);
     private static ItemStack closeItem = new ItemStack(Material.BARRIER);
+    private static ItemStack creeperBurst = new ItemStack(Material.SKULL_ITEM, 1, (byte) 4);
+    private static ItemStack smallBallBurst = new ItemStack(Material.SNOW_BALL);
+    private static ItemStack bigBallBurst = new ItemStack(Material.SLIME_BALL);
+    private static ItemStack starBurst = new ItemStack(Material.NETHER_STAR);
+
+
+
 
 
     public static void loadFireworkGUIMetas () {
@@ -157,12 +166,21 @@ public class FireworkMenuItems {
         closeItemMeta.setDisplayName(ChatColor.RED + "Salir");
         closeItem.setItemMeta(closeItemMeta);
 
+        ItemMeta creeperBurstMeta = creeperBurst.getItemMeta();
+        creeperBurstMeta.setDisplayName(ChatColor.GREEN + "Explosion de Creeper");
+        creeperBurst.setItemMeta(creeperBurstMeta);
 
+        ItemMeta smallBurstMeta = smallBallBurst.getItemMeta();
+        smallBurstMeta.setDisplayName(ChatColor.GREEN + "Explosion Chica");
+        smallBallBurst.setItemMeta(smallBurstMeta);
 
+        ItemMeta bigBurstMeta = bigBallBurst.getItemMeta();
+        bigBurstMeta.setDisplayName(ChatColor.GREEN + "Explosion Grande");
+        bigBallBurst.setItemMeta(bigBurstMeta);
 
-
-
-
+        ItemMeta starBurstMeta = starBurst.getItemMeta();
+        starBurstMeta.setDisplayName(ChatColor.GREEN + "Explosion de Estrella");
+        starBurst.setItemMeta(starBurstMeta);
 
         items.put("fireworkSelector", fireworkSelector);
         items.put("fireworkPowerIcon", fireworkPowerIcon);
@@ -179,6 +197,13 @@ public class FireworkMenuItems {
         items.put("trailSelector", trailSelector);
         items.put("saveItem", saveItem);
         items.put("closeItem", closeItem);
+        items.put("creeperBurst", CreateCustomHead.GetSkull(ChatColor.GREEN + "Explosion de Creeper", "e7d7275cbebed85482012941c5cc6c30020765406376e81ffb4b213f1bff4417"));
+        items.put("smallBallBurst", CreateCustomHead.GetSkull(ChatColor.GREEN + "Explosion Chica", "b0cc932d8c4916e7fa56344be58029eac0f03e35e8a0d0d7a8c5a1c36a496cff"));
+        items.put("bigBallBurst", CreateCustomHead.GetSkull(ChatColor.GREEN + "Explosion Grande", "909b07967457d49da6772108e866e1229d0c948d01ec645a9f610505dd90aca4"));
+        items.put("starBurst", CreateCustomHead.GetSkull(ChatColor.GREEN + "Explosion de Estrella", "34fec5cdc2e22401a4b5ba376ffe647279ed3f94fd75f8056d986f33c931ac55"));
+        items.put("upwardsBurst", CreateCustomHead.GetSkull(ChatColor.GREEN + "Explosion Especial", "315bbda12e1b832a6a6af85d8439152d9157ce104e6a7f7b36aeaccc863544"));
+
+
 
 
 
