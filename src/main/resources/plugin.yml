@@ -21,3 +21,6 @@ commands:
     usage: /<command> <ajustes>
     aliases:
       - fw
+  getlocation:
+    description: Gets the current player location.
+    usage: /<command>

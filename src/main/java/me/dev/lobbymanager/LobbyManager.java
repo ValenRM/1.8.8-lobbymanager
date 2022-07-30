@@ -40,7 +40,7 @@ public final class LobbyManager extends JavaPlugin {
         getCommand("setspawn").setExecutor(new SetSpawnCommand());
         getCommand("getspawn").setExecutor(new GetSpawnCommand());
         getCommand("lobby").setExecutor(new LobbyCommand());
-
+        getCommand("getlocation").setExecutor(new GetLocationCommand());
         //RANKED COMMANDS
 
         getCommand("firework").setExecutor(new FireworkCommand());

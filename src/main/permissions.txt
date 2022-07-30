@@ -4,6 +4,8 @@ PERMISSIONS
 
 lobby.management.set.spawnlocation #Allows player to set the spawn location of every player.
 lobby.management.get.spawnlocation #Allows player to get the current spawn location set for every player.
+lobby.management.get.location #Allows player to get his current location.
+
 
 ------------ USERS ------------
 
