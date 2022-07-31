@@ -10,13 +10,13 @@ public class FireworkPlayerSettings {
     public static void setFireworkPresets(String pName, Firework firework) {
         fireworkPresets.put(pName, firework);
     }
-    public static void setMountFirework(String pName, boolean condition) {
+    public static void setMountFirework(String pName, Boolean condition) {
         mountFirework.put(pName, condition);
     }
     public static Boolean getMountFirework(String pName) {
         Boolean mountF = mountFirework.get(pName);
         if (mountF == null) return false;
-        return true;
+        return mountF;
     }
     public static FireworkMeta getFireworks(String pName) {
         Firework f = fireworkPresets.get(pName);
