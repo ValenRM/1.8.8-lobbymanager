@@ -1,10 +1,7 @@
 package me.dev.lobbymanager.commands.ranked.commands;
-
-import me.dev.lobbymanager.LobbyManager;
 import me.dev.lobbymanager.command_cooldown.FireworkCommandCooldown;
 import me.dev.lobbymanager.menus.fireworks.FireworkCustomizationGUIMenu;
 import me.dev.lobbymanager.playersettings.FireworkPlayerSettings;
-import net.minecraft.server.v1_8_R3.EntityTypes;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -12,17 +9,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
-import org.bukkit.permissions.PermissionAttachmentInfo;
-import org.bukkit.plugin.Plugin;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class FireworkCommand implements CommandExecutor {
-    private static Plugin plugin = LobbyManager.getPlugin();
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
@@ -30,8 +20,8 @@ public class FireworkCommand implements CommandExecutor {
             if (p.hasPermission("server.rank.vip")) {
                 if (args.length < 1) {
                     try {
-                        Long cooldown = FireworkCommandCooldown.getCd(p.getName());
-                        if (cooldown != 0l) {
+                        long cooldown = FireworkCommandCooldown.getCd(p.getName());
+                        if (cooldown != 0) {
                             p.sendMessage(ChatColor.RED + "Espera " + ChatColor.DARK_RED +  String.format("%d", TimeUnit.MILLISECONDS.toSeconds(cooldown)) + ChatColor.RED + " segundos para ejecutar nuevamente este comando.");
                         } else {
                             FireworkCommandCooldown.setCooldown(p.getName(), 7 * 1000l);
@@ -49,7 +39,7 @@ public class FireworkCommand implements CommandExecutor {
                             }
                         }
                     } catch (Exception ex) {
-                        System.out.println(ex);
+                        ex.printStackTrace();
                     }
 
                 } else if (args[0].equalsIgnoreCase("ajustes")) {
@@ -57,15 +47,6 @@ public class FireworkCommand implements CommandExecutor {
                 } else {
                     p.sendMessage(ChatColor.RED + "Este comando no existe.");
                 }
-
-                    /*Firework f = (Firework) p.getWorld().spawnEntity(p.getLocation(), EntityType.FIREWORK);
-                    FireworkMeta fm = f.getFireworkMeta();
-                    List<Color> c = new ArrayList<Color>();
-                    c.add(Color.RED);
-                    FireworkEffect effect = FireworkEffect.builder().flicker(true).withColor(c).withFade(c).with(FireworkEffect.Type.CREEPER).trail(true).build();
-                    fm.addEffect(effect);
-                    fm.setPower(1);
-                    f.setFireworkMeta(fm);*/
             }
         }
         return true;
