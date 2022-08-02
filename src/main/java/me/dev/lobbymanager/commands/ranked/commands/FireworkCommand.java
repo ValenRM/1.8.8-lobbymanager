@@ -34,7 +34,7 @@ public class FireworkCommand implements CommandExecutor {
                         if (cooldown != 0l) {
                             p.sendMessage(ChatColor.RED + "Espera " + ChatColor.DARK_RED +  String.format("%d", TimeUnit.MILLISECONDS.toSeconds(cooldown)) + ChatColor.RED + " segundos para ejecutar nuevamente este comando.");
                         } else {
-                            FireworkCommandCooldown.setCooldown(p.getName(), 5 * 1000l);
+                            FireworkCommandCooldown.setCooldown(p.getName(), 7 * 1000l);
                             FireworkMeta fMeta = FireworkPlayerSettings.getFireworks(p.getName());
                             Boolean mountPlayer = FireworkPlayerSettings.getMountFirework(p.getName());
                             Firework f = (Firework) p.getWorld().spawnEntity(p.getLocation(), EntityType.FIREWORK);
